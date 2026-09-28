@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Arte y Programación</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #102018;
+            color: white;
+            margin: 0;
+        }
+
+        header {
+            background-color: #14532d;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .contenedor {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        section {
+            background-color: #1e293b;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            color: #4ade80;
+        }
+
+        canvas {
+            display: block;
+            margin: 20px auto;
+            background-color: black;
+            border: 2px solid #4ade80;
+        }
+
+        button {
+            display: block;
+            margin: auto;
+            padding: 10px 20px;
+            background-color: #4ade80;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Programación para Artista I</h1>
+        <p>Proyecto: Ecosistemas Algorítmicos</p>
+        <p>Agenda 2030 - ODS 15</p>
+    </header>
+
+    <div class="contenedor">
+
+        <section>
+            <h2>Resumen</h2>
+            <p>
+                Este proyecto combina el arte y la programación.
+                Se utiliza JavaScript para crear un árbol que cambia
+                cada vez que hacemos clic.
+            </p>
+        </section>
+
+        <section>
+            <h2>Introducción</h2>
+            <p>
+                La programación puede utilizarse como una herramienta
+                artística. En este proyecto usamos código para representar
+                la naturaleza y la importancia de cuidar los ecosistemas.
+            </p>
+        </section>
+
+        <section>
+            <h2>Obra Interactiva</h2>
+
+            <p>
+                Haz clic en el botón o sobre el dibujo para crear
+                un nuevo árbol.
+            </p>
+
+            <canvas id="canvas" width="600" height="400"></canvas>
+
+            <button onclick="dibujar()">Crear nuevo árbol</button>
+        </section>
+
+        <section>
+            <h2>Temas utilizados</h2>
+
+            <ul>
+                <li>Variables</li>
+                <li>Funciones</li>
+                <li>Condiciones</li>
+                <li>Recursividad</li>
+                <li>Canvas</li>
+                <li>Colores</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Conclusión</h2>
+
+            <p>
+                Este proyecto demuestra que el código también puede
+                utilizarse para crear obras de arte. La interacción
+                permite que cada árbol sea diferente y representa
+                la variedad de la naturaleza.
+            </p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>Programación para Artista I - 2026</p>
+    </footer>
+
+    <script>
+
+        let canvas = document.getElementById("canvas");
+        let dibujo = canvas.getContext("2d");
+
+        function arbol(x, y, tamaño) {
+
+            dibujo.beginPath();
+            dibujo.moveTo(x, y);
+            dibujo.lineTo(x, y - tamaño);
+
+            dibujo.strokeStyle = "brown";
+            dibujo.lineWidth = 5;
+            dibujo.stroke();
+
+            if (tamaño < 20) {
+
+                dibujo.beginPath();
+                dibujo.arc(x, y - tamaño, 8, 0, Math.PI * 2);
+
+                dibujo.fillStyle = "green";
+                dibujo.fill();
+
+                return;
+            }
+
+            arbol(x - 30, y - tamaño, tamaño * 0.7);
+            arbol(x + 30, y - tamaño, tamaño * 0.7);
+        }
+
+        function dibujar() {
+
+            dibujo.clearRect(0, 0, canvas.width, canvas.height);
+
+            dibujo.fillStyle = "#052e16";
+            dibujo.fillRect(0, 0, canvas.width, canvas.height);
+
+            arbol(300, 380, 120);
+        }
+
+        canvas.onclick = dibujar;
+
+        dibujar();
+
+    </script>
+
+</body>
+</html>
+```
